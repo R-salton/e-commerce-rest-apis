@@ -1,0 +1,34 @@
+{
+  "name": "e-commerce-rest-apis",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --import=tsx --watch --env-file=.env src/index.ts",
+    "build": "tsc"
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/R-salton/e-commerce-rest-apis.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/R-salton/e-commerce-rest-apis/issues"
+  },
+  "homepage": "https://github.com/R-salton/e-commerce-rest-apis#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.14.0",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3"
+  }
+}
