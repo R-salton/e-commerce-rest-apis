@@ -1,1 +1,0 @@
-ALTER TABLE "products" ALTER COLUMN "Image" DROP NOT NULL;
