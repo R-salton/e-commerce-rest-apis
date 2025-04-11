@@ -4,6 +4,8 @@ import { productsTable } from "../../db/productsSchema";
 import { eq } from "drizzle-orm";
 
 
+
+// * Get all products
 export async function listProducts(req: Request, res: Response) {
 
     try {
@@ -34,13 +36,13 @@ export async function CreateProduct(req:Request,res:Response) {
 
 
 // * Get a product by ID
-export async function getProductById(req:Request,res:Response) {
+export async function getProductById(req:Request,res:Response):Promise<void> {
 
     try {
         const {id} = req.params;
         const [product] = await db.select().from(productsTable).where(eq(productsTable.id,Number(id)));
         if (!product) {
-            return res.status(404).send({error:"Product not found"});
+            res.status(404).send({error:"Product not found"});
         }
         res.status(200).json({product});
         
@@ -49,14 +51,39 @@ export async function getProductById(req:Request,res:Response) {
         
     }
 
-    res.send("product details");
+  
 };
 
-export function updateProductById(req:Request,res:Response) {
-    res.send("product updated");
+// * Update a product by ID
+
+export async function updateProductById(req:Request,res:Response) {
+
+    try {
+
+        const id= Number(req.params.id);
+        const product = await db.update(productsTable).set(req.body).where(eq(productsTable.id,id)).returning();
+        res.status(200).json({message:"product updated", product});
+        
+    } catch (error) {
+        res.status(500).send({error:"Problem updating product"});
+    }
+ 
 };
 
 
-export function deleteProductById(req:Request,res:Response) {
-    res.send("product deleted");
+// * Delete a product by ID
+export async function deleteProductById(req:Request,res:Response) :Promise<void> {
+
+    try {
+        const id = Number(req.params.id);
+        const product = await db.delete(productsTable).where(eq(productsTable.id,id)).returning();
+        if (product.length === 0) {
+            res.status(404).send({error:"Product not found"});
+        }
+        res.status(200).json({message:"product deleted", product});
+           
+    } catch (error) {
+        res.status(500).send({error:"Problem deleting product"});
+    }
+
 };
