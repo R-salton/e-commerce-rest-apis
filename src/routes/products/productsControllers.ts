@@ -62,6 +62,9 @@ export async function updateProductById(req:Request,res:Response) {
 
         const id= Number(req.params.id);
         const product = await db.update(productsTable).set(req.body).where(eq(productsTable.id,id)).returning();
+        if(product.length == 0){
+            res.status(404).send({error:"Product not found"});
+        }
         res.status(200).json({message:"product updated", product});
         
     } catch (error) {
