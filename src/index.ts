@@ -1,5 +1,6 @@
 import express,{json,urlencoded} from "express";
 import productsRoutes from "./routes/products/index";
+import authRoutes from "./routes/auth/index";
 
 const app = express();
 const port : number = 3000;
@@ -17,8 +18,9 @@ app.get("/", (req, res) => {
 
 
 app.use("/products", productsRoutes);
+app.use("/auth",authRoutes);
 
 
 app.listen(port, () => {
-  console.log("Server is running on port 3000");
+  console.log(`Server is running on port ${port}`); 
 }); 
