@@ -2,7 +2,7 @@
 import { Router } from "express";
 import { loginUser, registerUser } from "./authControllers";
 import  {validateData}  from "../../middlewares/validationMiddleware";
-import { createUserSchema } from "../../db/usersSchema";
+import { createUserSchema, loginUserSchema } from "../../db/usersSchema";
 
 
 const router = Router();
@@ -13,6 +13,6 @@ router.post("/register",validateData(createUserSchema), registerUser);
 
 
 //Login User
-router.post("/login",loginUser);
+router.post("/login",validateData(loginUserSchema),loginUser);
 
 export default router;
