@@ -12,13 +12,14 @@ import jwt from "jsonwebtoken";
 //Register User
 export  async function registerUser(req:Request,res:Response):Promise<void> {
 
-const userData = req.cleanBody;
+const userData = await req.cleanBody;
 userData.password = await bcrypt.hash(userData.password, 10);
-console.log(userData);
+// console.log(userData);
 
 try {
 
-    const existingUser = await db.select().from(usersTable).where(eq(usersTable.email,userData.email));
+    const [existingUser] = await db.select().from(usersTable).where(eq(usersTable.email,userData.email));
+    // console.log(existingUser);
 if (existingUser){
     res.status(400).json({error:"User already exists"});
 
