@@ -14,6 +14,7 @@ export  async function registerUser(req:Request,res:Response):Promise<void> {
 
 const userData = req.cleanBody;
 userData.password = await bcrypt.hash(userData.password, 10);
+console.log(userData);
 
 try {
 
@@ -30,7 +31,7 @@ if (existingUser){
 }
     
 } catch (error) {
-    res.status(500).json({error:"Problem creating user"});
+    res.status(500).json({error:"Problem creating user: "+error});  
 }
 };
 
