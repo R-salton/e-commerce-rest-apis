@@ -14,7 +14,7 @@ export async function listProducts(req: Request, res: Response) {
         res.status(200).json({products});
         
     } catch (error) {
-        res.status(5001).json({error:'Problem in Getting all products'})
+        res.status(501).json({error:'Problem in Getting all products'})
     }
 
     res.send("The list of products");
