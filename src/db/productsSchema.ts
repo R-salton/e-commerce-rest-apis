@@ -1,8 +1,10 @@
 import { integer, pgTable, varchar,doublePrecision } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
+import { usersTable } from "./usersSchema";
 
 export const productsTable = pgTable("products", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  userId: integer().references(()=>usersTable.id),
   name: varchar({ length: 255 }).notNull(),
   description: varchar({ length: 255 }),
   price: doublePrecision(),

@@ -27,6 +27,8 @@ export async function CreateProduct(req:Request,res:Response) {
 
     try {
 
+        
+        req.cleanBody.userId = req.userId;
         const [product] = await db.insert(productsTable).values(req.cleanBody).returning();
 
         res.status(201).json({message:"product created", product});
