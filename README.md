@@ -6,9 +6,7 @@ This project provides a set of RESTful APIs for managing an e-commerce platform.
 ## Features
 
 - **Product Management**: Add, update, delete, and retrieve product details.
-- **Order Management**: Create, update, and track customer orders.
 - **User Management**: Register, authenticate, and manage user accounts.
-- **Search and Filter**: Search for products and filter them by categories, price, and other attributes.
 - **Secure Authentication**: Token-based authentication for secure access.
 
 ## API Endpoints
@@ -20,12 +18,6 @@ This project provides a set of RESTful APIs for managing an e-commerce platform.
 - `PUT /api/products/:id`: Update an existing product (Admin and Seller only).
 - `DELETE /api/products/:id`: Delete a product (Admin only).
 
-### Orders
-- `GET /api/orders`: Retrieve all orders (Admin only).
-- `GET /api/orders/:id`: Retrieve details of a specific order.
-- `POST /api/orders`: Create a new order.
-- `PUT /api/orders/:id`: Update an existing order.
-- `DELETE /api/orders/:id`: Cancel an order.
 
 ### Users
 - `POST /api/users/register`: Register a new user.
@@ -42,7 +34,7 @@ These APIs are deployed on [Render](https://render.com), a cloud platform for ho
 The base URL for the APIs is:
 
 ```
-https://ecommerce-apis.onrender.com
+https://e-commerce-rest-apis-iv7b.onrender.com
 ```
 
 You can use tools like Postman or cURL to interact with the APIs. Make sure to include the required authentication token for endpoints that require authorization.
@@ -74,7 +66,7 @@ The backend uses PostgreSQL as the database. Ensure that the database is properl
     Create a `.env` file and configure the required variables (e.g., database connection, JWT secret).
 4. Run migrations:
     ```bash
-    npm run migrate
+    npm run db:generate && npm run db:migrate
     ```
 5. Start the server:
     ```bash
